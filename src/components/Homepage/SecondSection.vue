@@ -1,6 +1,6 @@
 <script>
 import { gsap } from 'gsap';
-import { Power4 } from 'gsap/all';
+import { Power2, Power4 } from 'gsap/all';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import AnimatedSphere from "./AnimatedSphere.vue";
 
@@ -21,21 +21,25 @@ export default {
         trigger: scrollContainer,
         pin: true,
         scrub: 1,
-        end: () => "+=" + scrollContainer.offsetWidth,
+        end: () => "+=" + scrollContainer.offsetWidth / 2,
+        snap: {
+          snapTo: 1 / (sections.length - 1),
+          delay: 0
+        }
       }
     });
     //
     let textSections = gsap.utils.toArray(".text-panel");
     textSections.forEach((sct, i) => {
       const maskedSpans = sct.querySelectorAll(".mask-wrapper > span");
-      let start = 'top top-=' + (sct.offsetLeft - window.innerWidth / 2) * (scrollContainer.offsetWidth / (sct.offsetWidth * (sections.length)));
-      let end = '+=' + (sct.offsetLeft - window.innerWidth / 3) * (scrollContainer.offsetWidth / (sct.offsetWidth * (sections.length)));
+      let start = 'top top-=' + (sct.offsetLeft - window.innerWidth / 2) * ((scrollContainer.offsetWidth / 2) / (sct.offsetWidth * (sections.length)));
+      let end = '+=' + (sct.offsetLeft - window.innerWidth / 3) * ((scrollContainer.offsetWidth / 2) / (sct.offsetWidth * (sections.length)));
 
       gsap.to(maskedSpans, {
         top: 0,
         stagger: 0.02,
         lazy: false,
-        ease: Power4.easeOut,
+        ease: Power2.easeOut,
         scrollTrigger: {
           trigger: sct,
           start,
@@ -48,18 +52,19 @@ export default {
       gsap.to('.instant .mask-wrapper-big > span', {
         top: '1vw',
         stagger: 0.05,
-        duration: 1,
+        duration: .5,
+        delay: 0.1,
         lazy: false,
-        ease: Power4.easeOut,
+        ease: Power2.easeOut,
       });
 
       gsap.to('.instant .mask-wrapper > span', {
         top: 0,
         stagger: 0.05,
-        duration: 1,
+        duration: .5,
         delay: 0.2,
         lazy: false,
-        ease: Power4.easeOut,
+        ease: Power2.easeOut,
       });
     })
   }
@@ -78,7 +83,10 @@ export default {
       <AnimatedSphere />
     </div>
     <div class="panel instant">
-      <div class="flex flex-col items-center justify-end w-screen h-full text-left" style="padding-left: 5vw">
+      <div
+        class="flex flex-col items-center justify-end w-screen h-full text-left"
+        style="padding-left: 5vw"
+      >
         <div class="flex flex-col items-start justify-start w-full">
           <span class="mask-wrapper-big">
             <span class="cursive">BONJOUR</span>
@@ -101,7 +109,10 @@ export default {
       </div>
     </div>
     <div class="panel text-panel">
-      <div class="flex flex-col items-center justify-start w-screen h-full typo">
+      <div
+        class="flex flex-col items-center justify-start w-screen h-full typo"
+        style="padding-left: 5vw"
+      >
         <span class="block md:hidden">
           J’ai co-fondé l’application Sneakmart, une marketplace communautaire
           autour du monde de la sneaker et du streetwear.
@@ -165,12 +176,12 @@ export default {
   }
 
   .typo span {
-    font-size: 3vw;
-    line-height: 4vw;
+    font-size: 2.5vw;
+    line-height: 3vw;
   }
 
   .mask-wrapper {
-    height: 3.5vw;
+    height: 3vw;
     overflow: hidden;
     position: relative;
     z-index: 20;

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 z-50 flex flex-row items-center justify-between w-full bg-black border-b border-white navbar cursive"
+    class="fixed top-0 left-0 z-50 flex flex-row items-center justify-between w-full bg-black navbar cursive"
   >
     <!-- <div class="hidden md:block">DANY GANTIER</div> -->
     <span>DANY GANTIER</span>
@@ -15,7 +15,7 @@
 <style>
 .navbar {
   color: white !important;
-  /* mix-blend-mode: difference; */
+  mix-blend-mode: difference;
   z-index: 99 !important;
   padding-left: 5vw;
   padding-right: 5vw;

@@ -1,14 +1,8 @@
 <script >
 import TheHeader from "./components/Navigation/TheHeader.vue";
-import FirstSection from "./components/Homepage/FirstSection.vue";
 import SecondSection from "./components/Homepage/SecondSection.vue";
 import ThirdSection from "./components/Homepage/ThirdSection.vue";
 import TheFooter from "./components/Navigation/TheFooter.vue";
-import { gsap } from "gsap";
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import Scrollbar from 'smooth-scrollbar';
-import TheTest from "./components/Homepage/TheTest.vue";
-import DummyContent from "./components/DummyContent.vue";
 
 export default {
   components: {
@@ -16,18 +10,12 @@ export default {
     SecondSection,
     ThirdSection,
     TheFooter,
-    FirstSection
   },
-  mounted() {
-    // gsap.registerPlugin(ScrollTrigger);
-    //
-  }
 }
 </script>
 
 <template>
   <TheHeader />
-  <!-- <FirstSection /> -->
   <div>
     <SecondSection />
     <ThirdSection />

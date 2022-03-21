@@ -42,11 +42,13 @@ export default {
 <template>
   <div
     id="code-example-container"
-    class="flex flex-col items-center justify-center w-full py-40 text-black"
+    class="flex flex-col items-center justify-center w-full pb-40 text-black"
   >
     <span class="code-example">React Native</span>
     <span class="code-example">React.js/Next.js</span>
-    <span class="code-example">GraphQL/Apollo</span>
+    <span class="code-example">Vue.js/Vite.js</span>
+    <span class="code-example">GraphQL/Rest</span>
+    <span class="code-example">Apollo/Redux</span>
     <span class="code-example">TailwindCSS</span>
     <span class="code-example">GSAP</span>
     <span class="code-example">Figma/Sketch</span>
