@@ -177,7 +177,10 @@ export default {
       y: 0.2,
     });
 
-    const tlLight = gsap.timeline({ repeat: -1, repeatDelay: 3 });
+    const tlLight = gsap.timeline({
+      // repeat: -1,
+      // repeatDelay: 3
+    });
 
     tlLight.from(L1.position, {
       x: 30,

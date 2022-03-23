@@ -53,7 +53,7 @@ export default {
         top: '1vw',
         stagger: 0.05,
         duration: .5,
-        delay: 0.1,
+        delay: .3,
         lazy: false,
         ease: Power2.easeOut,
       });
@@ -62,7 +62,7 @@ export default {
         top: 0,
         stagger: 0.05,
         duration: .5,
-        delay: 0.2,
+        delay: .5,
         lazy: false,
         ease: Power2.easeOut,
       });
