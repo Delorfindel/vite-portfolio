@@ -96,15 +96,15 @@ export default {
  */
     // Geometry
     const objectsDistance = 50;
-    const particlesCount = 400
+    const particlesCount = 500
     const positions = new Float32Array(particlesCount * 3)
 
     for (let i = 0; i < particlesCount; i++) {
       // positions[i * 3 + 0] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 1] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 2] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
-      positions[i * 3 + 0] = _.random(-50, 50) * 0.1;
-      positions[i * 3 + 1] = _.random(-50, 50) * 0.1;
+      positions[i * 3 + 0] = _.random(-60, 60) * 0.1;
+      positions[i * 3 + 1] = _.random(-60, 60) * 0.1;
       positions[i * 3 + 2] = _.random(-200, 30) * 0.1;
     }
 
