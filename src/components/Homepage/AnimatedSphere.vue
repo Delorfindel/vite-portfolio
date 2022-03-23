@@ -223,8 +223,9 @@ export default {
     gsap.to(Ico.material.color, {
       scrollTrigger: {
         trigger: '.s2',
-        start: 1500,
-        end: 9000,
+        // start: 1500,
+        // end: 9000,
+        end: () => "+=" + (scrollContainer.offsetWidth / 2),
         scrub: 2,
         toggleActions: 'restart pause resume pause',
       },
