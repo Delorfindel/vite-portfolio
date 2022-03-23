@@ -71,13 +71,13 @@ export default {
       blending: AdditiveBlending,
     });
     //
-    L1 = new PointLight(0xffffff, 1);
+    L1 = new PointLight(0xffffff, 0.7);
     L1.position.z = 10;
     L1.position.y = 30;
     L1.position.x = 30;
     scene.add(L1);
     //
-    L2 = new PointLight(0xffffff, 0.8);
+    L2 = new PointLight(0xffffff, 0);
     L2.position.z = 20;
     // scene.add(L2);
     //
@@ -103,9 +103,9 @@ export default {
       // positions[i * 3 + 0] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 1] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 2] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
-      positions[i * 3 + 0] = _.random(-40, 40) * 0.1;
-      positions[i * 3 + 1] = _.random(-40, 40) * 0.1;
-      positions[i * 3 + 2] = _.random(-100, 30) * 0.1;
+      positions[i * 3 + 0] = _.random(-50, 50) * 0.1;
+      positions[i * 3 + 1] = _.random(-50, 50) * 0.1;
+      positions[i * 3 + 2] = _.random(-200, 30) * 0.1;
     }
 
     const particlesGeometry = new BufferGeometry()
@@ -209,6 +209,20 @@ export default {
         duration: 0.1,
       })
 
+    gsap.to(particlesMaterial.color, {
+      scrollTrigger: {
+        trigger: '.s2',
+        // start: 1500,
+        // end: 9000,
+        end: () => "+=" + (scrollContainer.offsetWidth / 2),
+        scrub: 2,
+        toggleActions: 'restart pause resume pause',
+      },
+      r: secondColor.r,
+      g: secondColor.g,
+      b: secondColor.b,
+    });
+
     gsap.to(Ico.material.color, {
       scrollTrigger: {
         trigger: '.s2',
@@ -256,8 +270,8 @@ export default {
       previousTime = elapsedTime
 
       // Mesh Rotation
-      Ico.rotation.x += 0.2 * deltaTime;
-      Ico.rotation.y += 0.2 * deltaTime;
+      Ico.rotation.x += 0.1 * deltaTime;
+      Ico.rotation.y += 0.1 * deltaTime;
       // Camera Cursor
       const parallaxX = cursor.x * 0.5;
       const parallaxY = - cursor.y * 0.5;
