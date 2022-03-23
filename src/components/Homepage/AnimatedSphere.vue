@@ -144,22 +144,9 @@ export default {
     });
 
     tlscale.from(Ico.scale, {
-      y: 0.6,
-      x: 0.6,
-      z: 0.6,
-
-    });
-    tlscale.to(Ico.scale, {
-      y: 0.6,
-      x: 0.6,
-      z: 0.6,
-
-    });
-    tlscale.to(Ico.scale, {
-      y: 0.6,
-      x: 0.6,
-      z: 0.6,
-
+      y: 1,
+      x: 1,
+      z: 1,
     });
     tlscale.to(Ico.scale, {
       y: 1,
@@ -167,10 +154,9 @@ export default {
       z: 1,
     });
     tlscale.to(Ico.scale, {
-      y: 0.6,
-      x: 0.6,
-      z: 0.6,
-
+      y: 1,
+      x: 1,
+      z: 1,
     });
     tlscale.to(Ico.scale, {
       y: 1.3,
