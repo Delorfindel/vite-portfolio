@@ -168,7 +168,7 @@ export default {
 .panel > div {
   width: 100%;
   height: 100%;
-  border: solid 3px white;
+  border: solid 1px white;
   border-radius: 50px;
   padding: 5vw;
 }
