@@ -57,14 +57,14 @@ export default {
 </template>
 
 <style>
-#code-example-container span:nth-child(odd) {
+#code-example-container span:nth-child(even) {
   width: 100%;
   background: white;
   color: white;
   -webkit-text-stroke: 2px rgba(0, 0, 0, 0.8);
 }
 
-#code-example-container span:nth-child(even) {
+#code-example-container span:nth-child(odd) {
   width: 100%;
   background: black;
   color: black;

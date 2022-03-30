@@ -24,6 +24,16 @@ export default {
 </template>
 
 <style>
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  /* overflow: hidden; */
+  overscroll-behavior: none;
+  margin: 0;
+  position: relative;
+}
 #viewport {
   overflow: hidden;
   position: fixed;
