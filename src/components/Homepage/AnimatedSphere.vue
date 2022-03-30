@@ -342,9 +342,9 @@ export default {
       // positions[i * 3 + 0] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 1] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
       // positions[i * 3 + 2] = (Math.random() - 0.5) * container.offsetWidth * 0.5;
-      positions[i * 3 + 0] = _.random(-100, 100) * 0.1;
-      positions[i * 3 + 1] = _.random(-100, 100) * 0.1;
-      positions[i * 3 + 2] = _.random(-100, 100) * 0.1;
+      positions[i * 3 + 0] = _.random(-75, 75) * 0.1;
+      positions[i * 3 + 1] = _.random(-75, 75) * 0.1;
+      positions[i * 3 + 2] = _.random(-75, 75) * 0.1;
     }
 
     const particlesGeometry = new BufferGeometry()
@@ -458,7 +458,7 @@ export default {
     })
 
     renderTl.from(Ico.material.uniforms.uNoiseDensity, {
-      value: 0.13,
+      value: 0.15,
     });
 
     renderTl.to(Ico.material.uniforms.uNoiseDensity, {
