@@ -27,7 +27,7 @@ import _ from 'lodash';
 
 const settings = {
   speed: 0.01,
-  density: .1,
+  density: 0,
   strength: 0.2,
   frequency: 3.0,
   amplitude: 6.0,
@@ -401,10 +401,10 @@ export default {
     });
 
     tltranslation.to(Ico.position, {
-      x: -1.7,
-      y: -0.4,
+      x: -1.9,
+      y: -0.8,
     });
-    
+
     const bgTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.s2',
@@ -450,15 +450,15 @@ export default {
         trigger: scrollContainer,
         // start: 1500,
         // end: 9000,
-        // start: 50,
-        end: () => "+=" + scrollContainer.offsetWidth * 0.7,
+        start: 'top top +=' + 10,
+        end: () => "+=" + scrollContainer.offsetWidth / 2,
         scrub: 1,
         // toggleActions: 'restart pause resume pause',
       },
     })
 
     renderTl.from(Ico.material.uniforms.uNoiseDensity, {
-      value: 1,
+      value: 0.13,
     });
 
     renderTl.to(Ico.material.uniforms.uNoiseDensity, {
