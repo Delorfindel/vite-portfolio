@@ -169,7 +169,7 @@ export default {
   width: 100%;
   height: 100%;
   border: solid 3px white;
-  border-radius: 100px;
+  border-radius: 50px;
   padding: 5vw;
 }
 
