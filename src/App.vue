@@ -3,6 +3,16 @@ import TheHeader from "./components/Navigation/TheHeader.vue";
 import SecondSection from "./components/Homepage/SecondSection.vue";
 import ThirdSection from "./components/Homepage/ThirdSection.vue";
 import TheFooter from "./components/Navigation/TheFooter.vue";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+ScrollSmoother.create({
+  smooth: 2,   // seconds it takes to "catch up" to native scroll position
+  effects: true // look for data-speed and data-lag attributes on elements and animate accordingly
+});
 
 export default {
   components: {
@@ -16,10 +26,12 @@ export default {
 
 <template>
   <TheHeader />
-  <div>
-    <SecondSection />
-    <ThirdSection />
-    <TheFooter />
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <SecondSection />
+      <ThirdSection />
+      <TheFooter />
+    </div>
   </div>
 </template>
 

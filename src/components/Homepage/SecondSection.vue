@@ -58,9 +58,9 @@ export default {
         pin: true,
         scrub: true,
         end: () => "+=" + scrollContainer.offsetWidth / 2,
-        snap: {
-          snapTo: 1
-        },
+        // snap: {
+        //   snapTo: 1
+        // },
         onUpdate: self => {
           if (self.progress > 0.5) {
             tlPanel1.reverse();
@@ -168,9 +168,9 @@ export default {
 .panel > div {
   width: 100%;
   height: 100%;
-  border: solid 1px white;
-  border-radius: 50px;
-  padding: 5vw;
+  /* border: solid 1px white;
+  border-radius: 50px; */
+  /* padding: 5vw; */
 }
 
 .panel.nope > div {
@@ -180,6 +180,7 @@ export default {
 .typo span {
   font-size: 8vw;
   line-height: 10vw;
+  font-weight: 300 !important;
 }
 
 .snk-img {
@@ -193,12 +194,13 @@ export default {
   }
 
   .typo span {
-    font-size: 2.5vw;
-    line-height: 3vw;
+    font-size: 2vw;
+
+    line-height: 2vw;
   }
 
   .mask-wrapper {
-    height: 3vw;
+    height: 2vw;
     overflow: hidden;
     position: relative;
     z-index: 20;

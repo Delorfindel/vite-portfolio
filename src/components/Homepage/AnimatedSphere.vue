@@ -23,6 +23,13 @@ import {
   LineBasicMaterial,
   ShaderMaterial
 } from 'three';
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+// import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
+import {
+  BloomEffect, EffectComposer, EffectPass, RenderPass,
+  DepthOfFieldEffect, VignetteEffect, NoiseEffect, BlendFunction
+} from "postprocessing";
 import _ from 'lodash';
 
 const settings = {
@@ -265,6 +272,20 @@ export default {
       },
       // wireframe: true,
     });
+    const material2 = new ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uTime: { value: time },
+        uSpeed: { value: .01 },
+        uNoiseDensity: { value: 2 },
+        uNoiseStrength: { value: settings.strength },
+        uFrequency: { value: settings.frequency },
+        uAmplitude: { value: settings.amplitude },
+        uIntensity: { value: settings.intensity },
+      },
+      // wireframe: true,
+    });
     container = document.getElementById('ico');
     //
     scene = new Scene();
@@ -313,22 +334,52 @@ export default {
     scene.background = new Color('rgb(0, 0, 0)');
     //
     renderer = new WebGLRenderer({
-      antialias: true,
-      preserveDrawingBuffer: true
+      // antialias: true,
+      // preserveDrawingBuffer: true
     });
     renderer.autoClear = false;
     renderer.autoClearColor = false;
     renderer.setPixelRatio(window.devicePixelRatio, 2);
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     container.appendChild(renderer.domElement);
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+    // const effectFilm = new FilmPass(0.8, 0.325, 256, false);
+    const noiseEffect = new NoiseEffect({
+      blendFunction: BlendFunction.NORMAL
+    });
+
+    noiseEffect.blendMode.opacity.value = 0.2;
+    // const depthOfFieldEffect = new DepthOfFieldEffect(camera, {
+    //   focusDistance: .01,
+    //   focalLength: .3,
+    //   bokehScale: 20.0,
+    //   height: 480
+    // });
+    // const vignetteEffect = new VignetteEffect({
+    //   eskil: false,
+    //   offset: 0.1,
+    //   darkness: 0
+    // });
+
+    // composer.addPass(depthOfFieldEffect)
+    // composer.addPass(new EffectPass(camera));
+    const glitchPass = new EffectPass(camera, noiseEffect);
+    composer.addPass(glitchPass);
+    // composer.addPass(effectFilm);
     ///////////////////////////////////////////////
     var plane = new Mesh(new PlaneGeometry(1000, 1000), new MeshBasicMaterial({
       color: bgColor.color1,
-      opacity: 0.1,
+      opacity: 0.9,
       transparent: true,
     }));
-    plane.position.z = -100;
+    plane.position.z = -15;
     scene.add(plane);
+
+    var plane2 = new Mesh(new IcosahedronGeometry(70, 64), material2);
+    plane2.position.z = -100;
+    scene.add(plane2);
 
     /**
  * Particles
@@ -360,7 +411,7 @@ export default {
     // Points
     const particles = new Points(particlesGeometry, particlesMaterial)
     // scene.add(particles)
-    cameraGroup.add(particles);
+    // cameraGroup.add(particles);
 
 
     let scrollContainer = document.querySelector("#hscroll");
@@ -401,8 +452,8 @@ export default {
     });
 
     tltranslation.to(Ico.position, {
-      x: -1.9,
-      y: -0.8,
+      x: -2.2,
+      y: -1,
     });
 
     const bgTl = gsap.timeline({
@@ -441,16 +492,16 @@ export default {
       },
     })
 
-    bgTl2.from(plane.material, { opacity: .1 });
+    bgTl2.from(plane.material, { opacity: .8 });
 
-    bgTl2.to(plane.material, { opacity: 1 });
+    bgTl2.to(plane.material, { opacity: .7 });
 
     const renderTl = gsap.timeline({
       scrollTrigger: {
         trigger: scrollContainer,
         // start: 1500,
         // end: 9000,
-        start: 'top top +=' + 10,
+        // start: 'top top +=' + 10,
         end: () => "+=" + scrollContainer.offsetWidth / 2,
         scrub: 1,
         // toggleActions: 'restart pause resume pause',
@@ -563,17 +614,19 @@ export default {
       // Camera Cursor
       const parallaxX = cursor.x * 0.5;
       const parallaxY = - cursor.y * 0.5;
-      // time += 1 * deltaTime;
+      time += 1 * deltaTime;
 
       cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime;
       cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime;
 
       // Render
-      renderer.render(scene, camera)
+      // renderer.render(scene, camera)
+      composer.render();
 
 
       // Update uniforms
-      Ico.material.uniforms.uTime.value = clock.getElapsedTime();
+      Ico.material.uniforms.uTime.value = time;
+      plane2.material.uniforms.uTime.value = time;
       // this.mesh.material.uniforms.uSpeed.value = settings.speed;
       // Ico.material.uniforms.uNoiseDensity.value = settings.density;
       // this.mesh.material.uniforms.uNoiseStrength.value = settings.strength;

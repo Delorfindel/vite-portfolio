@@ -8,8 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.9.1",
+    "gsap": "./gsap-bonus.tgz",
     "lodash": "^4.17.21",
+    "postprocessing": "^6.26.3",
     "smooth-scrollbar": "^8.7.4",
     "three": "^0.138.3",
     "vue": "^3.2.25"
