@@ -62,7 +62,7 @@ export default {
         //   snapTo: 1
         // },
         onUpdate: self => {
-          if (self.progress > 0.5) {
+          if (self.progress > 0.4) {
             tlPanel1.reverse();
             tlPanel2.play()
           } else {

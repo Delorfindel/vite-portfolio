@@ -25,12 +25,12 @@ export default {
 </script>
 
 <template>
-  <TheHeader />
   <div id="smooth-wrapper">
     <div id="smooth-content">
+      <TheHeader />
       <SecondSection />
-      <ThirdSection />
-      <TheFooter />
+      <!-- <ThirdSection /> -->
+      <!-- <TheFooter /> -->
     </div>
   </div>
 </template>

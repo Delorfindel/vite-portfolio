@@ -502,7 +502,7 @@ export default {
         // start: 1500,
         // end: 9000,
         // start: 'top top +=' + 10,
-        end: () => "+=" + scrollContainer.offsetWidth / 2,
+        end: () => "+=" + scrollContainer.offsetWidth * 0.7,
         scrub: 1,
         // toggleActions: 'restart pause resume pause',
       },
