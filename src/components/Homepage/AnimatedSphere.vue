@@ -1,3 +1,5 @@
+
+
 <script>
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -18,7 +20,9 @@ import {
   EffectComposer, EffectPass, RenderPass,
   NoiseEffect, BlendFunction, PixelationEffect
 } from "postprocessing";
-import { fragmentShader, vertexShader } from '../../Shaders/sphereShader.jsx';
+import sphereShaders from '../../Shaders/sphereShader.jsx';
+
+const { fragmentShader, vertexShader } = sphereShaders;
 
 const settings = {
   speed: 0.01,
