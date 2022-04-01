@@ -10,6 +10,8 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 ScrollSmoother.create({
+  wrapper: "#smooth-wrapper",
+ content: "#smooth-content",
   smooth: 2,   // seconds it takes to "catch up" to native scroll position
   effects: true // look for data-speed and data-lag attributes on elements and animate accordingly
 });
@@ -18,20 +20,22 @@ export default {
   components: {
     TheHeader,
     SecondSection,
-    ThirdSection,
-    TheFooter,
+    // ThirdSection,
+    // TheFooter,
   },
-}
+};
 </script>
 
 <template>
-  <div id="smooth-wrapper">
-    <div id="smooth-content">
-      <TheHeader />
-      <SecondSection />
+  <div>
+    <TheHeader />
+    <main id="smooth-wrapper">
+      <div id="smooth-content">
+        <SecondSection />
       <!-- <ThirdSection /> -->
       <!-- <TheFooter /> -->
-    </div>
+      </div>
+    </main>
   </div>
 </template>
 

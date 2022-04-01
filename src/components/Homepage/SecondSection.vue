@@ -2,52 +2,85 @@
 import { gsap } from 'gsap';
 import { Power2, Power4 } from 'gsap/all';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { SplitText } from "gsap/SplitText";
 import AnimatedSphere from "./AnimatedSphere.vue";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default {
   name: 'SecondSection',
   components: { AnimatedSphere },
   mounted() {
-
     //
     let sections = gsap.utils.toArray(".panel");
     let scrollContainer = document.querySelector("#hscroll");
     //
 
-    const tlPanel2 = gsap.timeline().pause();
-    tlPanel2.to('.snk .mask-wrapper > span', {
-      top: 0,
-      stagger: 0.05,
-      lazy: false,
-      ease: Power2.easeOut,
-    });
-    tlPanel2.to('.malt .mask-wrapper > span', {
-      top: 0,
-      stagger: 0.05,
-      lazy: false,
-      ease: Power2.easeOut,
-    });
+    // SplitText
+    const detailsText = new SplitText('.typo span', { type: "lines", charsClass: "line", position: "relative" });
+    const textEffect = {
+      duration: 1.5,
+      y: 100,
+      opacity: 0,
+      ease: 'expo',
+      stagger: 0.1,
+    };
+
+    // First Panel
+
+    // gsap.from('.typo.bonjour span', {
+    //   duration: 2,
+    //   y: 50,
+    //   opacity: 0,
+    //   ease: 'expo',
+    //   stagger: 0.1});
+
+    // const lol = new ScrollTrigger({
+    //       trigger: scrollContainer,
+    //       scrub: 2,
+    //       start:  0,
+    //       end: () => "+=" + 200 ,
+    //       toggleActions: "restart none none reverse",
+    // });
 
     const tlPanel1 = gsap.timeline().pause();
-    tlPanel1.to('.instant .mask-wrapper-big > span', {
-      top: '1vw',
-      stagger: 0.05,
-      duration: 1,
-      delay: .3,
-      lazy: false,
-      ease: Power2.easeOut,
-    });
-    tlPanel1.to('.instant .mask-wrapper > span', {
-      top: 0,
-      stagger: 0.05,
-      duration: .5,
-      // delay: .5,
-      lazy: false,
-      ease: Power2.easeOut,
-    });
+    tlPanel1.from(".typo.bonjour .big", textEffect);
+    tlPanel1.from(".typo.bonjour span:not(.big)", textEffect);
 
+    // gsap.set(".typo.bonjour span", {
+    //   y: 0,
+    //   opacity: 1
+    // });
+    // gsap.to('.typo.bonjour span', {
+    //   duration: 2,
+    //   y: 50,
+    //   opacity: 0,
+    //   ease: 'expo',
+    //   stagger: 0.1,
+
+    //   scrollTrigger: {
+    //     trigger: scrollContainer,
+    //     scrub: 2,
+    //     start: 0,
+    //     end: () => "+=" + 200,
+    //     // toggleActions: "restart none none reverse",
+    //   }
+    // });
+
+    gsap.from('.typo.second span', {
+      duration: 2,
+      y: 50,
+      opacity: 0,
+      ease: 'expo',
+      stagger: 0.1,
+
+      scrollTrigger: {
+        trigger: scrollContainer,
+        scrub: 2,
+        start: scrollContainer.offsetWidth / 2 - 200,
+        end: () => "+=" + 200,
+      }
+    });
 
     gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
@@ -58,94 +91,60 @@ export default {
         pin: true,
         scrub: true,
         end: () => "+=" + scrollContainer.offsetWidth / 2,
-        // snap: {
-        //   snapTo: 1
-        // },
         onUpdate: self => {
           if (self.progress > 0.4) {
             tlPanel1.reverse();
-            tlPanel2.play()
+            // tlPanel2.play();
           } else {
             tlPanel1.play();
-            tlPanel2.reverse()
+            // tlPanel2.reverse();
           }
         },
       }
     });
+    //////////////
   }
-}
+};
 </script>
 
 <template>
-  <div class="relative flex flex-row h-screen text-white" id="hscroll">
+  <div id="hscroll" class="relative flex flex-row h-screen text-white">
     <div
       class="absolute top-0 left-0 z-0 flex flex-col items-center justify-center w-screen h-screen overflow-hidden"
     >
       <AnimatedSphere />
     </div>
-    <!-- <div
-      class="absolute top-0 left-0 z-0 flex flex-col items-center justify-center w-screen h-screen p-20 overflow-hidden"
-    >
-      <div class="w-full h-full border border-white rounded-xl" />
-    </div>-->
     <div class="h-full panel instant">
-      <div class="flex flex-col items-center justify-end w-screen h-full text-left">
-        <div class="flex flex-col items-start justify-start w-full">
-          <span class="mask-wrapper-big">
-            <span class="cursive">BONJOUR</span>
-          </span>
-        </div>
-        <div class="flex flex-col items-end justify-end w-full typo">
-          <span class="mask-wrapper">
-            <span class="hidden md:block">Je suis un Creative Developer & Entrepreneur.</span>
-          </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">95% de mon temps, je développe des</span>
-          </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">plateformes & applications numériques</span>
-          </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">sur-mesure pour mes clients.</span>
-          </span>
-        </div>
+      <div class="flex flex-col items-start justify-end w-screen h-full text-left typo bonjour">
+        <span class="big cursive">BONJOUR</span>
+        <span class="hidden md:block">Je suis un Creative Developer & Entrepreneur.</span>
+        <span class="hidden md:block">95% de mon temps, je développe des</span>
+        <span class="hidden md:block">plateformes & applications numériques</span>
+        <span class="hidden md:block">sur-mesure pour mes clients.</span>
       </div>
     </div>
-    <div class="panel text-panel lol">
-      <div class="flex flex-col items-center justify-between w-full h-full">
-        <div class="flex flex-col items-center justify-start w-full h-1/2 typo snk">
+    <div class="panel text-panel">
+      <div class="flex flex-col items-center justify-between w-full h-full typo second">
+        <div class="flex flex-col items-start justify-start w-full h-1/2">
           <span class="block md:hidden">
             J’ai co-fondé l’application Sneakmart, une marketplace communautaire
             autour du monde de la sneaker et du streetwear.
           </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">J’ai co-fondé l’application Sneakmart</span>
-          </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">une marketplace communautaire autour du</span>
-          </span>
-          <span class="mask-wrapper">
-            <span class="hidden md:block">monde de la sneaker et du streetwear.</span>
-          </span>
+          <span class="hidden md:block">J’ai co-fondé l’application Sneakmart</span>
+          <span class="hidden md:block">une marketplace communautaire autour du</span>
+          <span class="hidden md:block">monde de la sneaker et du streetwear.</span>
         </div>
-        <div class="flex flex-col items-end justify-end w-full h-1/2 typo malt">
+        <div class="flex flex-col items-end justify-end w-full h-1/2">
           <span class="block md:hidden">
             Je vous propose mes services en tant que développeur front-end sur
             la plateforme de Malt
           </span>
-          <span class="mask-wrapper right">
-            <span class="hidden md:block">Je vous propose mes services</span>
-          </span>
-          <span class="mask-wrapper right">
-            <span class="hidden md:block">en tant que développeur front-end</span>
-          </span>
-          <span class="mask-wrapper right">
-            <span class="hidden md:block">sur la plateforme de freelance Malt.</span>
-          </span>
+          <span class="hidden md:block">Je vous propose mes services</span>
+          <span class="hidden md:block">en tant que développeur front-end</span>
+          <span class="hidden md:block">sur la plateforme de freelance Malt.</span>
         </div>
       </div>
     </div>
-    <!-- <div class="panel text-panel"></div> -->
   </div>
 </template>
 
@@ -161,16 +160,13 @@ export default {
   width: 100vw;
   z-index: 10;
   padding: 5vw;
-  background: black;
-  mix-blend-mode: difference;
+  /* background: black;
+  mix-blend-mode: difference; */
 }
 
 .panel > div {
   width: 100%;
   height: 100%;
-  /* border: solid 1px white;
-  border-radius: 50px; */
-  /* padding: 5vw; */
 }
 
 .panel.nope > div {
@@ -187,51 +183,36 @@ export default {
   width: 15%;
 }
 
+.test-line span > div {
+  overflow: hidden;
+}
+
+.bonjour {
+  color: rgba(200, 200, 200);
+}
+
+.second {
+  color: rgba(50, 50, 50);
+}
+
 @media (min-width: 768px) {
-  .mask-wrapper-big span {
+  .typo span {
+    font-size: 2.5vw;
+    line-height: 2.6vw;
+  }
+  .typo .big {
     font-size: 8vw;
     line-height: 8vw;
   }
-
+}
+@media (min-width: 1280px) {
   .typo span {
     font-size: 2vw;
-
     line-height: 2vw;
   }
-
-  .mask-wrapper {
-    height: 2vw;
-    overflow: hidden;
-    position: relative;
-    z-index: 20;
-    width: 100%;
-    text-align: left;
-    /* border: 1px solid white; */
-  }
-
-  .mask-wrapper.right {
-    text-align: right;
-  }
-
-  .mask-wrapper.center {
-    text-align: center;
-  }
-
-  .mask-wrapper span,
-  .mask-wrapper-big span {
-    position: absolute;
-    top: 300%;
-    width: 100%;
-  }
-
-  .mask-wrapper-big {
-    height: 9vw;
-    /* border: 1px solid white; */
-    overflow: hidden;
-    position: relative;
-    z-index: 20;
-    width: 100%;
-    text-align: left;
+  .typo .big {
+    font-size: 6vw;
+    line-height: 6vw;
   }
 }
 </style>

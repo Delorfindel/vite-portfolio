@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="absolute top-0 left-0 z-50 flex flex-row items-center justify-between w-full bg-black navbar cursive"
+  <header
+    class="fixed top-0 left-0 z-50 flex flex-row items-center justify-between w-full bg-black navbar cursive"
   >
     <!-- <div class="hidden md:block">DANY GANTIER</div> -->
     <span>DANY GANTIER</span>
@@ -9,7 +9,7 @@
       <span class="mr-6">SKILLS</span>
       <span class="mr-6">HIRE ME</span>
     </div>
-  </div>
+  </header>
 </template>
 
 <style>
