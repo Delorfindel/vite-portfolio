@@ -20,7 +20,7 @@ import {
   EffectComposer, EffectPass, RenderPass,
   NoiseEffect, BlendFunction, PixelationEffect
 } from "postprocessing";
-import sphereShaders from '/public/Shaders/sphereShader.jsx';
+import sphereShaders from './sphereShader.jsx';
 
 const { fragmentShader, vertexShader } = sphereShaders;
 
