@@ -217,6 +217,48 @@ const settings = {
 export default {
   name: 'AnimatedSphere',
   props: {},
+  // data() {
+  //   return {
+  //     settings: {
+  //       speed: 0.01,
+  //       density: 0,
+  //       strength: 0.2,
+  //       frequency: 3.0,
+  //       amplitude: 6.0,
+  //       intensity: 7.0,
+  //     },
+  //     container,
+  //     renderer,
+  //     camera,
+  //     scene,
+  //     Ico,
+  //     cursor: {
+  //       x: 0,
+  //       y: 0
+  //     },
+  //     cameraGroup,
+  //     pixel: { value: 100 },
+  //     sizes: {
+  //       width: window.innerWidth,
+  //       height: window.innerHeight
+  //     },
+  //     time: 0,
+  //     material,
+  //     material2,
+  //     bgColor: {
+  //       color1: new Color('rgb(0, 0, 0)'),
+  //       color2: new Color('rgb(255, 255, 255)')
+  //     },
+  //     composer,
+  //     pixelationEffect,
+  //     renderPass,
+  //     effectPass,
+  //     noiseEffect,
+  //     plane,
+  //     plane2,
+  //     scrollContainer: document.querySelector("#hscroll")
+  //   };
+  // },
   mounted() {
     gsap.registerPlugin(ScrollTrigger);
     ///////////////////////////////////////////////
@@ -297,11 +339,10 @@ export default {
     scene.background = new Color('rgb(0, 0, 0)');
     //
     renderer = new WebGLRenderer({
-      antialias: true,
-      // preserveDrawingBuffer: true
+      antialias: false,
+      powerPreference: "high-performance"
     });
     renderer.autoClear = false;
-    renderer.autoClearColor = false;
     renderer.setPixelRatio(window.devicePixelRatio, 2);
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     container.appendChild(renderer.domElement);
@@ -332,7 +373,6 @@ export default {
     scene.add(plane2);
 
     const scrollContainer = document.querySelector("#hscroll");
-
 
     // console.log(pixelationEffect)
     // gsap.to(pixel, {
@@ -471,10 +511,8 @@ export default {
       Ico.material.uniforms.uTime.value = time;
       plane2.material.uniforms.uTime.value = time;
       //
-      if (pixelationEffect.getGranularity() > 1) {
-        // console.log(10 * elapsedTime);
-        // pixelationEffect.setGranularity(pixelationEffect.getGranularity() - 1 * deltaTime);
-        pixelationEffect.setGranularity(100 - 40 * elapsedTime)
+      if (pixelationEffect.granularity > 1) {
+        pixelationEffect.granularity = 100 - 40 * elapsedTime;
       }
 
       time += 1 * deltaTime;

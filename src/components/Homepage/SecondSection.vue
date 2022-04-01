@@ -20,7 +20,8 @@ export default {
     const detailsText = new SplitText('.typo span', { type: "lines", charsClass: "line", position: "relative" });
     const textEffect = {
       duration: 1.5,
-      y: 100,
+      y: 50,
+      rotateZ: 2,
       opacity: 0,
       ease: 'expo',
       stagger: 0.1,
@@ -68,12 +69,7 @@ export default {
     // });
 
     gsap.from('.typo.second span', {
-      duration: 2,
-      y: 50,
-      opacity: 0,
-      ease: 'expo',
-      stagger: 0.1,
-
+      ...textEffect,
       scrollTrigger: {
         trigger: scrollContainer,
         scrub: 2,
@@ -91,6 +87,7 @@ export default {
         pin: true,
         scrub: true,
         end: () => "+=" + scrollContainer.offsetWidth / 2,
+        snap: true,
         onUpdate: self => {
           if (self.progress > 0.4) {
             tlPanel1.reverse();
