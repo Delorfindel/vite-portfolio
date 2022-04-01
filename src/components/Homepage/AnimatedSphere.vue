@@ -306,7 +306,7 @@ export default {
       fragmentShader,
       uniforms: {
         uTime: { value: time },
-        uSpeed: { value: .01 },
+        uSpeed: { value: .03 },
         uNoiseDensity: { value: 2 },
         uNoiseStrength: { value: settings.strength },
         uFrequency: { value: settings.frequency },
@@ -425,15 +425,15 @@ export default {
     });
 
     sphereScaleTimeline.to(Ico.scale, {
-      y: 1,
-      x: 1,
-      z: 1,
-    });
-
-    sphereScaleTimeline.to(Ico.scale, {
       y: 1.3,
       x: 1.3,
       z: 1.3,
+    });
+
+    sphereScaleTimeline.to(Ico.scale, {
+      y: 1.7,
+      x: 1.7,
+      z: 1.7,
     });
 
     const sphereTranslationTimeline = gsap.timeline({
