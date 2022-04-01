@@ -18,7 +18,7 @@ import {
   EffectComposer, EffectPass, RenderPass,
   NoiseEffect, BlendFunction, PixelationEffect
 } from "postprocessing";
-import { fragmentShader, vertexShader } from '../../shaders/sphereShader';
+import { fragmentShader, vertexShader } from '../../shaders/sphereShader.js';
 
 const settings = {
   speed: 0.01,
