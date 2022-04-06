@@ -202,7 +202,6 @@ import {
   EffectComposer, EffectPass, RenderPass,
   NoiseEffect, BlendFunction, PixelationEffect
 } from "postprocessing";
-// const sphereShaders = require('./sphereShader.jsx');
 const { fragmentShader, vertexShader } = sphereShaders;
 
 const settings = {
@@ -217,48 +216,6 @@ const settings = {
 export default {
   name: 'AnimatedSphere',
   props: {},
-  // data() {
-  //   return {
-  //     settings: {
-  //       speed: 0.01,
-  //       density: 0,
-  //       strength: 0.2,
-  //       frequency: 3.0,
-  //       amplitude: 6.0,
-  //       intensity: 7.0,
-  //     },
-  //     container,
-  //     renderer,
-  //     camera,
-  //     scene,
-  //     Ico,
-  //     cursor: {
-  //       x: 0,
-  //       y: 0
-  //     },
-  //     cameraGroup,
-  //     pixel: { value: 100 },
-  //     sizes: {
-  //       width: window.innerWidth,
-  //       height: window.innerHeight
-  //     },
-  //     time: 0,
-  //     material,
-  //     material2,
-  //     bgColor: {
-  //       color1: new Color('rgb(0, 0, 0)'),
-  //       color2: new Color('rgb(255, 255, 255)')
-  //     },
-  //     composer,
-  //     pixelationEffect,
-  //     renderPass,
-  //     effectPass,
-  //     noiseEffect,
-  //     plane,
-  //     plane2,
-  //     scrollContainer: document.querySelector("#hscroll")
-  //   };
-  // },
   mounted() {
     gsap.registerPlugin(ScrollTrigger);
     ///////////////////////////////////////////////
@@ -374,18 +331,9 @@ export default {
 
     const scrollContainer = document.querySelector("#hscroll");
 
-    // console.log(pixelationEffect)
-    // gsap.to(pixel, {
-    //   value: 1,
-    //   duration: 2
-    // });
-
     const transparentPlaneColorTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.s2',
-        // start: 1500,
-        // end: 9000,
-        // start: 50,
         end: () => "+=" + scrollContainer.offsetWidth * 0.4,
         scrub: 1,
         toggleActions: 'restart pause resume pause',
@@ -431,9 +379,9 @@ export default {
     });
 
     sphereScaleTimeline.to(Ico.scale, {
-      y: 1.7,
-      x: 1.7,
-      z: 1.7,
+      y: 1.6,
+      x: 1.6,
+      z: 1.6,
     });
 
     const sphereTranslationTimeline = gsap.timeline({
@@ -450,8 +398,8 @@ export default {
     });
 
     sphereTranslationTimeline.to(Ico.position, {
-      x: -2.2,
-      y: -1,
+      x: -2.7,
+      y: -1.5,
     });
 
     const sphereNoiseTimeline = gsap.timeline({
@@ -468,9 +416,13 @@ export default {
       value: 2,
     });
 
+    gsap.to(pixelationEffect, {
+      granularity: 1,
+      duration: 4,
+      ease: 'easeOut',
+    });
+
     window.addEventListener('mousemove', (event) => {
-      // cursor.x = event.clientX / sizes.width - 0.5;
-      // cursor.y = event.clientY;
       cursor.x = event.clientX / sizes.width - 0.5;
       cursor.y = event.clientY / sizes.height - 0.5;
     });
@@ -508,12 +460,9 @@ export default {
       // Render
       composer.render();
       // Update uniforms
-      Ico.material.uniforms.uTime.value = time;
+      // Ico.material.uniforms.uTime.value = time;
       plane2.material.uniforms.uTime.value = time;
       //
-      if (pixelationEffect.granularity > 1) {
-        pixelationEffect.granularity = 100 - 40 * elapsedTime;
-      }
 
       time += 1 * deltaTime;
       window.requestAnimationFrame(tick);

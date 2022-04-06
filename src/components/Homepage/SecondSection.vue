@@ -1,6 +1,5 @@
 <script>
 import { gsap } from 'gsap';
-import { Power2, Power4 } from 'gsap/all';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from "gsap/SplitText";
 import AnimatedSphere from "./AnimatedSphere.vue";
@@ -29,44 +28,9 @@ export default {
 
     // First Panel
 
-    // gsap.from('.typo.bonjour span', {
-    //   duration: 2,
-    //   y: 50,
-    //   opacity: 0,
-    //   ease: 'expo',
-    //   stagger: 0.1});
-
-    // const lol = new ScrollTrigger({
-    //       trigger: scrollContainer,
-    //       scrub: 2,
-    //       start:  0,
-    //       end: () => "+=" + 200 ,
-    //       toggleActions: "restart none none reverse",
-    // });
-
     const tlPanel1 = gsap.timeline().pause();
-    tlPanel1.from(".typo.bonjour .big", textEffect);
+    tlPanel1.from(".typo.bonjour .big", { ...textEffect, delay: .5, duration: 1 });
     tlPanel1.from(".typo.bonjour span:not(.big)", textEffect);
-
-    // gsap.set(".typo.bonjour span", {
-    //   y: 0,
-    //   opacity: 1
-    // });
-    // gsap.to('.typo.bonjour span', {
-    //   duration: 2,
-    //   y: 50,
-    //   opacity: 0,
-    //   ease: 'expo',
-    //   stagger: 0.1,
-
-    //   scrollTrigger: {
-    //     trigger: scrollContainer,
-    //     scrub: 2,
-    //     start: 0,
-    //     end: () => "+=" + 200,
-    //     // toggleActions: "restart none none reverse",
-    //   }
-    // });
 
     gsap.from('.typo.second span', {
       ...textEffect,
@@ -105,7 +69,10 @@ export default {
 </script>
 
 <template>
-  <div id="hscroll" class="relative flex flex-row h-screen text-white">
+  <div
+    id="hscroll"
+    class="relative flex flex-row h-screen text-white"
+  >
     <div
       class="absolute top-0 left-0 z-0 flex flex-col items-center justify-center w-screen h-screen overflow-hidden"
     >

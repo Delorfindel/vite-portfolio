@@ -20,14 +20,13 @@ export default {
   components: {
     TheHeader,
     SecondSection,
-    // ThirdSection,
+    ThirdSection,
     // TheFooter,
   },
 };
 </script>
 
 <template>
-  
   <div>
     <TheHeader />
     <main id="smooth-wrapper">
