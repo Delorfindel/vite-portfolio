@@ -1,5 +1,7 @@
 {
     "include": [
-        "./src/**/*"
-, "public/Shaders"    ]
+        "./src/**/*",
+        "public/Shaders"
+    ],
+    "jsx": "preserve"
 }

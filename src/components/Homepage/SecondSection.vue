@@ -3,12 +3,13 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from "gsap/SplitText";
 import AnimatedSphere from "./AnimatedSphere.vue";
+import TheHeader from "../Navigation/TheHeader.vue";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default {
   name: 'SecondSection',
-  components: { AnimatedSphere },
+  components: { AnimatedSphere, TheHeader },
   mounted() {
     //
     let sections = gsap.utils.toArray(".panel");
@@ -78,6 +79,7 @@ export default {
     >
       <AnimatedSphere />
     </div>
+    <!-- <TheHeader /> -->
     <div class="h-full panel instant">
       <div class="flex flex-col items-start justify-end w-screen h-full text-left typo bonjour">
         <span class="big cursive">BONJOUR</span>
@@ -124,8 +126,10 @@ export default {
   width: 100vw;
   z-index: 10;
   padding: 5vw;
-  /* background: black;
-  mix-blend-mode: difference; */
+  /* padding-top: 15vw; */
+  /* background: black; */
+  /* background-color: rgba(0, 0, 0, 0); */
+  mix-blend-mode: difference;
 }
 
 .panel > div {
@@ -152,11 +156,13 @@ export default {
 }
 
 .bonjour {
-  color: rgba(200, 200, 200);
+  /* color: rgba(200, 200, 200); */
+  color:white;
 }
 
 .second {
-  color: rgba(50, 50, 50);
+  /* color: rgba(50, 50, 50); */
+  color:white;
 }
 
 @media (min-width: 768px) {

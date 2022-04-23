@@ -1,51 +1,60 @@
-<script >
+<script>
 import TheHeader from "./components/Navigation/TheHeader.vue";
 import SecondSection from "./components/Homepage/SecondSection.vue";
 import ThirdSection from "./components/Homepage/ThirdSection.vue";
 import TheFooter from "./components/Navigation/TheFooter.vue";
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 2,   // seconds it takes to "catch up" to native scroll position
-  effects: true // look for data-speed and data-lag attributes on elements and animate accordingly
-});
-
 export default {
   components: {
     TheHeader,
     SecondSection,
-    ThirdSection,
-    // TheFooter,
+  },
+  mounted() {
+    ScrollSmoother.create({
+      smooth: 2, // seconds it takes to "catch up" to native scroll position
+      effects: true, // look for data-speed and data-lag attributes on elements and animate accordingly
+    });
   },
 };
 </script>
 
 <template>
   <div>
-    <TheHeader />
-    <main id="smooth-wrapper">
-      <div id="smooth-content">
-        <SecondSection />
-        <!-- <ThirdSection /> -->
-        <!-- <TheFooter /> -->
+    <!-- <div class="absolute w-full h-full"> -->
+    <div>
+      <SecondSection />
+      <TheHeader />
+      <div
+        class="flex flex-col items-center justify-center w-full h-screen bg-black"
+      >
+        <div class="text-4xl text-white">
+          LOL
+        </div>
+        <div
+          
+          class="mt-40 text-4xl text-white"
+        >
+          LOL
+        </div>
       </div>
-    </main>
+      <!-- <ThirdSection /> -->
+      <!-- <TheFooter /> -->
+    </div>
   </div>
 </template>
 
 <style>
+
 html,
 body {
   width: 100%;
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  /* overflow: hidden; */
   overscroll-behavior: none;
   margin: 0;
   position: relative;

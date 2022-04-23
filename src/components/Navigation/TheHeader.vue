@@ -1,8 +1,24 @@
+<script>
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default {
+  name: 'TheHeader',
+  mounted() {
+    ScrollTrigger.create({
+      trigger: "#smooth-content",
+      pin: ".navbar",
+    });
+  }
+};
+</script>
+
 <template>
   <header
-    class="fixed top-0 left-0 z-50 flex flex-row items-center justify-between w-full bg-black navbar cursive"
+    class="top-0 left-0 flex flex-row items-center justify-between navbar cursive"
   >
-    <!-- <div class="hidden md:block">DANY GANTIER</div> -->
     <span>DANY GANTIER</span>
     <div class="flex-row justify-end hidden md:flex align-center">
       <span class="mr-6">ABOUT</span>
@@ -16,10 +32,15 @@
 .navbar {
   color: white !important;
   mix-blend-mode: difference;
-  z-index: 99 !important;
   padding-left: 5vw;
   padding-right: 5vw;
   height: 5vw;
+  position: absolute;
+  width: 100vw;
+}
+
+.pin-spacer .navbar {
+  z-index: auto!important;
 }
 
 .navbar.cursive {
