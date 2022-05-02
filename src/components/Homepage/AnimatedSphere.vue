@@ -272,7 +272,7 @@ export default {
       },
       // wireframe: true,
     });
-    container = document.getElementById('ico');
+    container = document.getElementById('animation-container');
     //
     scene = new Scene();
     //
@@ -289,6 +289,7 @@ export default {
     Ico = new Mesh(new IcosahedronGeometry(1, 64), material);
     Ico.rotation.x = .8;
     Ico.rotation.y = .8;
+    Ico.position.x = 1;
     scene.add(Ico);
     const bgColor = {};
     bgColor.color1 = new Color('rgb(0, 0, 0)');
@@ -299,6 +300,7 @@ export default {
       antialias: false,
       powerPreference: "high-performance"
     });
+    console.log(container.offsetWidth, container.offsetHeight);
     renderer.autoClear = false;
     renderer.setPixelRatio(window.devicePixelRatio, 2);
     renderer.setSize(container.offsetWidth, container.offsetHeight);
@@ -327,6 +329,7 @@ export default {
 
     const plane2 = new Mesh(new IcosahedronGeometry(70, 64), material2);
     plane2.position.z = -100;
+    // plane2.position.x = 20;
     scene.add(plane2);
 
     const scrollContainer = document.querySelector("#hscroll");
@@ -334,7 +337,7 @@ export default {
     const transparentPlaneColorTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.s2',
-        end: () => "+=" + scrollContainer.offsetWidth * 0.4,
+        end: () => "+=" + scrollContainer.offsetWidth * 0.8,
         scrub: 1,
         toggleActions: 'restart pause resume pause',
       },
@@ -355,27 +358,27 @@ export default {
     const transparentPlaneOpacityTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: scrollContainer,
-        end: () => "+=" + scrollContainer.offsetWidth * 0.4,
+        end: () => "+=" + scrollContainer.offsetWidth * 1.6,
         scrub: 1,
       },
     });
 
-    transparentPlaneOpacityTimeline.from(plane.material, { opacity: .7 });
+    transparentPlaneOpacityTimeline.from(plane.material, { opacity: 0 });
 
-    transparentPlaneOpacityTimeline.to(plane.material, { opacity: .6 });
+    transparentPlaneOpacityTimeline.to(plane.material, { opacity: .8 });
 
     const sphereScaleTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: scrollContainer,
-        end: () => "+=" + scrollContainer.offsetWidth * 0.7,
+        end: () => "+=" + scrollContainer.offsetWidth * 1.4,
         scrub: 1,
       },
     });
 
     sphereScaleTimeline.to(Ico.scale, {
-      y: 1.3,
-      x: 1.3,
-      z: 1.3,
+      y: 1,
+      x: 1,
+      z: 1,
     });
 
     sphereScaleTimeline.to(Ico.scale, {
@@ -387,7 +390,7 @@ export default {
     const sphereTranslationTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: scrollContainer,
-        end: () => "+=" + scrollContainer.offsetWidth * 0.9,
+        end: () => "+=" + scrollContainer.offsetWidth * 1.8,
         scrub: 1,
       },
     });
@@ -398,14 +401,14 @@ export default {
     });
 
     sphereTranslationTimeline.to(Ico.position, {
-      x: -2.7,
-      y: -1.5,
+      x: scrollContainer.offsetWidth > 1100 ? -2.7 : -1.5,
+      y: scrollContainer.offsetWidth > 1100 ? -1.5 : -1.5,
     });
 
     const sphereNoiseTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: scrollContainer,
-        end: () => "+=" + scrollContainer.offsetWidth * 0.7,
+        end: () => "+=" + scrollContainer.offsetWidth * 1.4,
         scrub: 1,
       },
     });
@@ -474,5 +477,8 @@ export default {
 </script>
 
 <template>
-  <div id="ico" class="w-full h-full" />
+  <div
+    id="ico"
+    class="w-full h-full"
+  />
 </template>

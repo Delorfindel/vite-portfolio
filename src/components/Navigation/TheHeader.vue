@@ -8,8 +8,9 @@ export default {
   name: 'TheHeader',
   mounted() {
     ScrollTrigger.create({
-      trigger: "#smooth-content",
+      trigger: "body",
       pin: ".navbar",
+      pinSpacing: false,
     });
   }
 };
@@ -19,8 +20,10 @@ export default {
   <header
     class="top-0 left-0 flex flex-row items-center justify-between navbar cursive"
   >
-    <span>DANY GANTIER</span>
-    <div class="flex-row justify-end hidden md:flex align-center">
+    <div class="flex-row justify-start hidden h-full md:flex align-center">
+      <span>DANY GANTIER</span>
+    </div>
+    <div class="flex-row justify-end hidden h-full md:flex align-center">
       <span class="mr-6">ABOUT</span>
       <span class="mr-6">SKILLS</span>
       <span class="mr-6">HIRE ME</span>
@@ -34,7 +37,8 @@ export default {
   mix-blend-mode: difference;
   padding-left: 5vw;
   padding-right: 5vw;
-  height: 5vw;
+  height: 5vh;
+  margin-top: 1.25vh;
   position: absolute;
   width: 100vw;
 }
@@ -45,6 +49,6 @@ export default {
 
 .navbar.cursive {
   font-size: 30px;
-  line-height: 30px;
+  line-height: 55px;
 }
 </style>
