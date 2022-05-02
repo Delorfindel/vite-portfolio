@@ -105,7 +105,9 @@ export default {
 </script>
 
 <template>
-  <div id="scroll-container">
+  <div
+    id="scroll-container"
+  >
     <div
       id="hscroll"
       class="relative flex flex-row h-screen text-white second-section"

@@ -8,14 +8,15 @@ export default {
   mounted() {
     gsap.registerPlugin(ScrollTrigger);
     //
-    const codeExamples = gsap.utils.toArray('.code-example');
-    codeExamples.forEach((box, index) => {
-      const amount = 10;
+    const amount = 10;
+    const codeExamplesOdd = gsap.utils.toArray('.code-example:nth-child(odd) > span:first-child');
+    const codeExamplesEven = gsap.utils.toArray('.code-example:nth-child(even) > span:first-child');
+    codeExamplesOdd.forEach((box, index) => {
+      
       gsap.to(box, {
         lazy: false,
-        xPercent: index % 2 === 0 ? -amount : amount,
-        // opacity: 0,
-        // ease: 'power1.out',
+        xPercent: 100,
+        ease: 'power1.out',
         scrollTrigger: {
           start: 'top 90%',
           end: 'top -10%',
@@ -24,7 +25,21 @@ export default {
         },
       });
     });
-    //
+    codeExamplesEven.forEach((box, index) => {
+      
+      gsap.to(box, {
+        lazy: false,
+        xPercent: -100,
+        ease: 'power1.out',
+        scrollTrigger: {
+          start: 'top 90%',
+          end: 'top -10%',
+          trigger: box,
+          scrub: 2,
+        },
+      });
+    });
+    
     gsap.to('#code-example-container', {
       scrollTrigger: {
         trigger: '#code-example-container',
@@ -44,15 +59,56 @@ export default {
 <template>
   <div
     id="code-example-container"
-    class="flex flex-col items-center justify-center w-screen pb-40 overflow-hidden text-black"
+    class="flex flex-col w-full pb-40 text-black"
   >
-    <span class="code-example">React Native - React Native - React Native - React Native - React Native</span>
-    <span
-      class="code-example"
-    >React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js</span>
-    <span
-      class="code-example"
-    >Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js</span>
+    <div class="code-example">
+      <span>
+        React Native - React Native - React Native - React Native - React Native
+      </span>
+      <span>
+        React Native - React Native - React Native - React Native - React Native
+      </span>
+    </div>
+    <div class="code-example">
+      <span>
+        React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js
+      </span>
+      <span>
+        React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js
+      </span>
+    </div>
+    <div class="code-example">
+      <span>
+        Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js
+      </span>
+      <span>
+        Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js
+      </span>
+    </div>
+    <div class="code-example">
+      <span>
+        React Native - React Native - React Native - React Native - React Native
+      </span>
+      <span>
+        React Native - React Native - React Native - React Native - React Native
+      </span>
+    </div>
+    <div class="code-example">
+      <span>
+        React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js
+      </span>
+      <span>
+        React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js - React.js - Next.js
+      </span>
+    </div>
+    <div class="code-example">
+      <span>
+        Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js
+      </span>
+      <span>
+        Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js - Vue.js - Vite.js
+      </span>
+    </div>
     <!-- <span class="code-example">GraphQL Rest</span> -->
     <!-- <span class="code-example">GraphQL/Rest</span>
     <span class="code-example">Apollo/Redux</span>
@@ -64,42 +120,50 @@ export default {
 </template>
 
 <style>
-#code-example-container span:nth-child(even) {
-  /* width: 100%; */
-  /* background: white;
-  color: white;
-  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.8); */
-  /* background: white; */
-  /* -webkit-text-stroke: 2px rgba(0, 0, 0, 0.8);
-  color: white; */
-  /* color: black; */
-  color: black;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
-   text-align: center;
+#code-example-container  {
  
 }
 
-#code-example-container span:nth-child(odd) {
-  /* width: 100%; */
-  /* background: black; */
-  /* background: white; */
-  /* -webkit-text-stroke: 2px rgba(0, 0, 0, 0.8); */
-  color: black;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
-   text-align: center;
+.code-example {
+  position: relative;
+  width: 100%;
+  /* background-color: red; */
 }
 
-.code-example {
+.code-example > span{
+  color: black;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+  /* position: absolute; */
+  top: 0;
+  width: 100%;
+  /* style */
   font-size: 9vw;
   line-height: 15vw;
   white-space: nowrap;
-  /* width: 100%; */
+  width: 100%;
   text-align: center;
+  opacity: 0;
+}
 
+.code-example > span:first-child {
+  position: absolute!important;
+  opacity: 1;
+}
+
+.code-example:nth-child(even) > span:first-child{
+  /* background-color: blue; */
+  left: 50%!important;
+}
+
+.code-example:nth-child(odd) > span:first-child{
+  /* background-color: red; */
+  left: -100%!important;
+  text-align: right;
+  
 }
 
 @media (min-width: 768px) {
-  .code-example {
+  .code-example span {
     font-size: 11vw;
     line-height: 19vw;
   }

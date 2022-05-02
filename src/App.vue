@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { RepeatTextScrollFx } from './utils/RepeatTextEffect';
 import ThirdSection from "./components/Homepage/ThirdSection.vue";
-import ThirdSectionBackup from "./components/Homepage/ThirdSectionBackup.vue";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -17,7 +16,7 @@ export default {
     HorizontalSection,
     CodeSection,
     ThirdSection,
-    ThirdSectionBackup
+    // ThirdSectionBackup
 },
   mounted() {
     
@@ -30,7 +29,7 @@ export default {
       effects: true, // look for data-speed and data-lag attributes on elements and animate accordingly
     });
     ScrollTrigger.create({
-      trigger: "body",
+      trigger: "smooth-wrapper",
       pin: ".newnavbar",
       // pinSpacing: false,
     });
@@ -45,13 +44,14 @@ export default {
         id="app-wrapper"
         class="flex flex-row items-start justify-between"
       >
-        <div class="flex flex-col w-1/4 h-screen border-white cursive newnavbar">
-          <span class="text-7xl">DANY<br>GANTIER</span>
-        </div>
-        <div class="w-3/4 overflow-hidden">
+        <div class="w-3/4">
           <HorizontalSection />
           <CodeSection />
           <ThirdSection />
+        </div>
+        <div class="flex flex-col w-1/4 h-screen border-white cursive newnavbar">
+          <span class="text-7xl">DANY<br>GANTIER</span>
+          <span class="text-base no-cursive">PORTFOLIO © 2022</span>
         </div>
       </div>
       <!-- <TheHeader /> -->
@@ -63,6 +63,7 @@ export default {
 .newnavbar {
   padding: 2vw;
   color: white !important;
+  mix-blend-mode: difference;
 }
 
 html,
@@ -119,6 +120,11 @@ text-orientation: upright; */
 .demo-4 .text-rep span,
 .demo-5 .text-rep span {
 	padding-bottom: 0;
+}
+
+.text-stroke {
+  color: black;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
 }
 
 </style>

@@ -39,3 +39,11 @@ h6 {
   line-height: 9vw;
   font-family: Larken-Regular, sans-serif;
 }
+
+.no-cursive {
+  font-family: GarnettRegular-Regular, sans-serif;
+}
+
+.cursive-default {
+  font-family: Larken-Regular, sans-serif;
+}
