@@ -143,7 +143,7 @@ export default {
               autour du monde de la sneaker et du streetwear.
             </span>
             <span class="hidden md:block">J’ai co-fondé l’application <span
-                class="italic cursive">Sneakmart</span></span>
+                class="cursive-italic-default">Sneakmart</span></span>
             <span class="hidden md:block">une marketplace communautaire autour du</span>
             <span class="hidden md:block">monde de la sneaker et du streetwear.</span>
           </div>
@@ -154,7 +154,7 @@ export default {
             </span>
             <span class="hidden md:block">Je vous propose mes services</span>
             <span class="hidden md:block">en tant que développeur front-end</span>
-            <span class="hidden md:block">sur la <span class="italic cursive">plateforme de freelance
+            <span class="hidden md:block">sur la <span class="cursive-italic-default">plateforme de freelance
                 Malt.</span></span>
           </div>
         </div>

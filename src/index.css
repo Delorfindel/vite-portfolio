@@ -17,6 +17,21 @@
   src: url("assets/fonts/Larken-Regular.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Larken-Light";
+  src: url("assets/fonts/Larken-Thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Larken-Italic";
+  src: url("assets/fonts/Larken-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Larken-Thin-Italic";
+  src: url("assets/fonts/Larken-Thinitalic.woff") format("woff");
+}
+
 
 
 body {
@@ -46,4 +61,16 @@ h6 {
 
 .cursive-default {
   font-family: Larken-Regular, sans-serif;
+}
+
+.cursive-italic-default {
+  font-family: Larken-Italic, sans-serif;
+}
+
+.cursive-thin-italic-default {
+  font-family: Larken-Thin-Italic, sans-serif;
+}
+
+.cursive-light-default {
+  font-family: Larken-Light, sans-serif;
 }

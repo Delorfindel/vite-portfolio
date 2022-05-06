@@ -34,7 +34,7 @@ export default {
       // pinSpacing: false,
     });
 
-    
+
   },
 };
 </script>

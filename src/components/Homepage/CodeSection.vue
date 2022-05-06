@@ -20,12 +20,13 @@ export default {
         0101101001100
       </span>
     </div>
-    <div class="flex flex-col items-end justify-start w-full font-bold text-white text-8xl cursive-default"
-      style="padding:2vw;" data-speed="2">
-      <span class="font-bold text-9xl no-cursive">I create,</span>
-      <span class="font-bold text-9xl no-cursive"></span>
-      <span class="mt-10 text-6xl">And I will tell you</span>
-      <span class="text-6xl"><span class="">how</span> I can help you</span>
+    <div class="flex flex-col items-end justify-start w-full text-white cursive-light-default"
+      style="padding:2vw;font-size:14vw;line-height:13vw;" data-speed="2">
+      <span class="">I create,</span>
+      <span class="">design and</span>
+      <span class="">connect</span>
+      <span class=""><span class="cursive-italic-default">brands</span> to</span>
+      <span class="">people</span>
       <!-- <span class="text-6xl ">help you</span> -->
     </div>
   </div>
