@@ -290,6 +290,7 @@ export default {
     Ico.rotation.x = .8;
     Ico.rotation.y = .8;
     Ico.position.x = 1;
+    Ico.position.y = .5;
     scene.add(Ico);
     const bgColor = {};
     bgColor.color1 = new Color('rgb(0, 0, 0)');
