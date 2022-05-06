@@ -139,23 +139,21 @@ export default {
         <div class="flex flex-col items-center justify-between w-full h-full typo second">
           <div class="flex flex-col items-start justify-start w-full h-1/2">
             <span class="block md:hidden">
-              J’ai co-fondé l’application Sneakmart, une marketplace communautaire
-              autour du monde de la sneaker et du streetwear.
+              I co-founded the application Sneakmart, a community marketplace around the the world of sneakers and
+              streetwear.
             </span>
-            <span class="hidden md:block">J’ai co-fondé l’application <span
+            <span class="hidden md:block">I co-founded the application <span
                 class="cursive-italic-default">Sneakmart</span></span>
-            <span class="hidden md:block">une marketplace communautaire autour du</span>
-            <span class="hidden md:block">monde de la sneaker et du streetwear.</span>
+            <span class="hidden md:block">a community marketplace around the</span>
+            <span class="hidden md:block">the world of sneakers and streetwear.</span>
           </div>
           <div class="flex flex-col items-end justify-end w-full h-1/2">
             <span class="block md:hidden">
-              Je vous propose mes services en tant que développeur front-end sur
-              la plateforme de Malt
+              I offer you my services as a front-end developer on the freelance platform Malt.
             </span>
-            <span class="hidden md:block">Je vous propose mes services</span>
-            <span class="hidden md:block">en tant que développeur front-end</span>
-            <span class="hidden md:block">sur la <span class="cursive-italic-default">plateforme de freelance
-                Malt.</span></span>
+            <span class="hidden md:block">I offer you my services</span>
+            <span class="hidden md:block">as a front-end developer</span>
+            <span class="hidden md:block">on the <span class="cursive-italic-default">freelance platform, Malt.</span></span>
           </div>
         </div>
       </div>

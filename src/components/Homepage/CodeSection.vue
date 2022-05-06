@@ -21,12 +21,16 @@ export default {
       </span>
     </div>
     <div class="flex flex-col items-end justify-start w-full text-white cursive-light-default"
-      style="padding:2vw;font-size:14vw;line-height:13vw;" data-speed="2">
+      style="padding:2vw;font-size:12vw;line-height:12vw;" data-speed="2">
       <span class="">I create,</span>
-      <span class="">design and</span>
-      <span class="">connect</span>
-      <span class=""><span class="cursive-italic-default">brands</span> to</span>
-      <span class="">people</span>
+      <span>innovative</span>
+      <span>experiences,</span>
+      <span><span class="cursive-italic-default">quality</span> code,</span>
+      <span>always with</span>
+      <span>performance</span>
+      <span>in mind.</span>
+      <!-- <span class=""><span class="cursive-italic-default">brands</span> to</span>
+      <span class="">people</span> -->
       <!-- <span class="text-6xl ">help you</span> -->
     </div>
   </div>
